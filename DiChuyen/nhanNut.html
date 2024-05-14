@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body onload="docReady()">>
+
+<img id="nobita" src="nobita.jpg" alt="" style="position: absolute; left: 0; top: 0;" height="200" width="200">
+<script>
+    const v = 10; //Số bước di chuyển mỗi lần nhấn phím
+    let keyState = {}; // Đối tượng để theo dõi trạng thái của các phím
+
+    function nhanLen() {
+        let len = document.getElementById('nobita');
+        let top = parseInt(len.style.top);
+        if (top > 0){// Kiểm tra xem có chạm cạnh trên không
+            len.style.top = (top - v) + 'px';
+        }
+        //len.style.top = parseInt(len.style.top) - 5 + 'px';
+    }
+    function nhanXuong() {
+        let len = document.getElementById('nobita');
+        let top = parseInt(len.style.top);
+        let maxHeight = window.innerHeight - len.offsetHeight;  // Chiều cao tối đa có thể di chuyển xuống dưới
+        if (top < maxHeight){// Kiểm tra xem có chạm cạnh trên không
+            len.style.top = (top + v) + 'px';
+        }
+        //len.style.top = parseInt(len.style.top) + 5 + 'px';
+    }
+    function nhanTrai() {
+        let len = document.getElementById('nobita');
+        let left = parseInt(len.style.left);
+        if (left > 0) { // Kiểm tra xem có chạm cạnh trái không
+            len.style.left = (left - v) + 'px';
+        }
+        //len.style.left = parseInt(len.style.left) - 5 + 'px';
+    }
+    function nhanPhai() {
+        let len = document.getElementById('nobita');
+        let left = parseInt(len.style.left);
+        let maxWidth = window.innerWidth - len.offsetWidth; // Chiều rộng tối đa có thể di chuyển sang phải
+        if (left < maxWidth) { // Kiểm tra xem có chạm cạnh phải không
+            len.style.left = (left + v) + 'px';
+        }
+    }
+    
+    function capNhatViTri() {
+        if (keyState[37] && keyState[38]) { // Trái + Lên
+            nhanTrai();
+            nhanLen();
+        } else if (keyState[37] && keyState[40]) { // Trái + Xuống
+            nhanTrai();
+            nhanXuong();
+        } else if (keyState[39] && keyState[38]) { // Phải + Lên
+            nhanPhai();
+            nhanLen();
+        } else if (keyState[39] && keyState[40]) { // Phải + Xuống
+            nhanPhai();
+            nhanXuong();
+        } else if (keyState[37]) { // Trái
+            nhanTrai();
+        } else if (keyState[38]) { // Lên
+            nhanLen();
+        } else if (keyState[39]) { // Phải
+            nhanPhai();
+        } else if (keyState[40]) { // Xuống
+            nhanXuong();
+        }
+    }
+
+    function xuLySuKienBanPhim(evt) {
+        keyState[evt.keyCode] = evt.type === 'keydown';
+        capNhatViTri();
+    }
+
+    function docReady() {
+        window.addEventListener('keydown', xuLySuKienBanPhim);
+        window.addEventListener('keyup', xuLySuKienBanPhim);
+    }
+
+    //Di chuyen trái, phải, len, xuong
+    // function nhapPhim(evt) {
+    //     switch (evt.keyCode){
+    //         case
+    //         case 37:
+    //             nhanTrai();
+    //             break;
+    //         case 38:
+    //             nhanLen();
+    //             break;
+    //         case 39:
+    //             nhanPhai()
+    //             break;
+    //         case 40:
+    //             nhanXuong();
+    //             break
+    //     }
+    // }
+    //
+    // function docReady() {
+    //     window.addEventListener('keydown', nhapPhim);
+    // }
+</script>
+</body>
+</html>

@@ -7,59 +7,20 @@
 <body>
 <img src="gaodo.jpg" alt="" style="width: 100px; top: 100px; left: 100px; position: absolute" id="x">
 <script>
-    let anh = document.getElementById('x');
+    let v = 5;
+    let v1 = 5;
 
-    switch (bd = parseInt(anh.style.left)) {
-        case
-
-    }
     setInterval(()=>{
-        let bd = parseInt(anh.style.left);
-        if ( bd > 750) {
-            setInterval(()=>{
-                anh.style.left = parseInt(anh.style.left) - 1 + 'px';
-            },1);
+        let anh = document.getElementById('x');
+        anh.style.left = parseInt(anh.style.left) + v + 'px';
+        anh.style.top = parseInt(anh.style.top) + v1 + 'px';
+        if ( parseInt(anh.style.left) > window.innerWidth - 100 || parseInt(anh.style.left) == 0) {
+            v = -v;
         }
-        else {
-            setInterval(()=>{
-                anh.style.left = parseInt(anh.style.left) + 1 + 'px';
-            },1);
+        if ( parseInt(anh.style.top) > window.innerHeight - 100 || parseInt(anh.style.top) == 0) {
+            v1 = -v1;
         }
-    },100);
-
-
-
-
-
-
-    // let pos = parseInt(anh.style.left);
-    //Quay lại từ đầu
-    // function diChuyen(){
-    //     pos +=2;
-    //     if(pos > VIEN_PHAI){
-    //         pos = -anh.width;
-    //     }
-    //     anh.style.left = pos + "px"
-    //     requestAnimationFrame(diChuyen);
-    // }
-    // diChuyen()
-    // function diChuyen2() {
-    //     pos +=2;
-    //     if (pos > VIEN_PHAI){
-    //         pos = -anh.width;
-    //     }
-    //     anh.style.left = pos + "px"
-    //     requestAnimationFrame(diChuyen2)
-    // }
-    // window.onload = function() {
-    //     VIEN_PHAI = window.innerWidth; // Cập nhật chiều rộng màn hình khi tải trang
-    //     diChuyen2(); // Bắt đầu di chuyển ảnh khi trang tải xong
-    // };
-    //
-    // window.onresize = function() {
-    //     VIEN_PHAI = window.innerWidth; // Cập nhật chiều rộng màn hình khi thay đổi kích thước
-    // };
-
+    },1);
 </script>
 </body>
 </html>
