@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <img src="gaodo.jpg" style="width: 100px; position: absolute; top: 100px; left: 100px" id="x">
+    <button onclick="tren()">Trên</button>
+    <button onclick="duoi()">Dưới</button>
+    <button onclick="trai()">Trái</button>
+    <button onclick="phai()">Phải</button>
+<script>
+    let anh = document.getElementById('x');
+    const DO_DAI = 20;
+
+    function tren() {
+        anh.style.top = parseInt(anh.style.top) - DO_DAI +'px';
+    }
+
+    function duoi() {
+        anh.style.top = parseInt(anh.style.top) + DO_DAI +'px';
+    }
+
+    function trai() {
+        anh.style.left = parseInt(anh.style.left) - DO_DAI +'px';
+    }
+
+    function phai() {
+        anh.style.left = parseInt(anh.style.left) + DO_DAI +'px';
+    }
+
+</script>
+</body>
+</html>
